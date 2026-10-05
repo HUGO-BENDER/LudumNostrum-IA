@@ -35,7 +35,14 @@ LudumNostrum/
 .\scripts\New-Project.ps1 -Name Proyecto002 -Description "Breve descripción"
 ```
 
-Crea `..\Proyecto002` desde `template/`, sustituye los marcadores, inicializa git y hace el primer commit.
+Crea `..\Proyecto002` desde `template/`, sustituye los marcadores, inicializa git, configura `origin` → `https://github.com/HUGO-BENDER/LudumNostrum-Proyecto002.git` y hace el primer commit. No hace push: crea antes el repo en GitHub (vacío) y luego `git push -u origin main`. Para otro dueño: `-GitHubOwner <usuario>`; para no configurar remoto: `-GitHubOwner ''`.
+
+## Repositorios
+
+| Local | GitHub |
+|---|---|
+| `IA/` | `https://github.com/HUGO-BENDER/LudumNostrum-IA` |
+| `ProyectoNNN/` | `https://github.com/HUGO-BENDER/LudumNostrum-ProyectoNNN` |
 
 ## Trabajar en un proyecto
 

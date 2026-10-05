@@ -6,7 +6,9 @@
     Copia la plantilla a ..\<Name> (hermano de IA), sustituye los marcadores
     {{PROJECT_NAME}}, {{DESCRIPTION}}, {{DATE}} y {{FRAMEWORK_VERSION}},
     guarda la versión del framework en .claude/framework-version,
-    inicializa git en la rama main y hace el primer commit.
+    inicializa git en la rama main, configura el remoto origin
+    (https://github.com/<GitHubOwner>/LudumNostrum-<Name>.git) y hace el primer commit.
+    No hace push: el repo de GitHub debe crearse antes (vacío, sin README).
 
 .EXAMPLE
     .\New-Project.ps1 -Name Proyecto002 -Description "Juego de cartas cooperativo"
@@ -18,6 +20,8 @@ param(
     [string]$Name,
 
     [string]$Description = '_Pendiente de definir con el usuario._',
+
+    [string]$GitHubOwner = 'HUGO-BENDER',
 
     [switch]$NoGit,
     [switch]$NoCommit
@@ -65,6 +69,9 @@ if (-not $NoGit) {
     Push-Location $projectDir
     try {
         git init -b main | Out-Null
+        if ($GitHubOwner) {
+            git remote add origin "https://github.com/$GitHubOwner/LudumNostrum-$Name.git"
+        }
         if (-not $NoCommit) {
             git add -A
             git commit -m "chore: bootstrap $Name from LudumNostrum IA v$version" | Out-Null
